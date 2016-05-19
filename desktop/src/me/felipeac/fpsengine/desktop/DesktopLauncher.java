@@ -7,10 +7,10 @@ import me.felipeac.fpsengine.FPSEngine;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		//config.samples = 4;
-		config.width = 1920;
-		config.height = 1080;
-		config.fullscreen = true;
+		config.samples = 4;
+		config.width = 1280;
+		config.height = 720;
+		config.fullscreen = false;
 		new LwjglApplication(new FPSEngine(), config);
 	}
 }

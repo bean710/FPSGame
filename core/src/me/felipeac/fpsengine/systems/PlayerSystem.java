@@ -26,6 +26,9 @@ public class PlayerSystem extends IteratingSystem {
 	float deltaX = 0;
 	float deltaY = 0;
 
+	float prevX = 0;
+	float prevY = 0;
+
 	public PlayerSystem(PerspectiveCamera camera, Hud hud) {
 		super(Family.all(PlayerComponent.class, PhysicsComponent.class).get());
 		this.camera = camera;
@@ -73,8 +76,16 @@ public class PlayerSystem extends IteratingSystem {
 
 		// TODO: make better first person camera controls here:
 
-		camera.direction.rotate(camera.up, -Gdx.input.getDeltaX()/3f);
-		camera.direction.rotate(camera.direction.cpy().crs(camera.up).nor(), -Gdx.input.getDeltaY()/3f);
+
+
+		float deltaX = Gdx.input.getX() - prevX;
+		float deltaY = Gdx.input.getY() - prevY;
+
+		camera.direction.rotate(camera.up, -deltaX*sens);
+		camera.direction.rotate(camera.direction.cpy().crs(camera.up).nor(), -deltaY*sens);
+
+		prevX = Gdx.input.getX();
+		prevY = Gdx.input.getY();
 
 	}
 
